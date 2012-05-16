@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <link rel="stylesheet" href="base.css" type="text/css" />
+ 
+
+ </head>
+
+ <body>
+	
+	<div style="position: absolute; left: 100px; top: 100px; width: 250px; background-color: white; border: solid black;" id="J_boxDiv">
+		<div style="background-color: gray; border-bottom: dotted black; width: 250px; height: 30px; font-family: sans-serif; font-weight: bold;" id="J_dragBarDiv"></div>
+		<div>This is a test. Testing, testing, testing.<p>This is a test.</p>Test.</div>
+	</div>
+<script src="event-v1.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+	
+	var data = {
+		startX: 0,
+		startY: 0,
+		deltaX: 0,
+		deltaY: 0,
+		deltaX: 0,
+		deltaY: 0,
+		elementToDrag: document.getElementById("J_boxDiv"),
+		dragBar: document.getElementById("J_dragBarDiv")
+	};
+	
+	var moveHandler = function(e){
+		e.target.style.cursor = "move";
+		data.elementToDrag.style.left = (e.clientX - data.deltaX) + "px";
+		data.elementToDrag.style.top = (e.clientY - data.deltaY) + "px";
+		// 清除文本选择
+		if('getSelection' in window) {
+			window.getSelection().removeAllRanges();
+		} else {
+			try {
+				document.selection.empty();
+			} catch (e) {};
+		}
+		e.stopPropagation();
+	};
+	
+	var upHandler = function(e) {
+		Handler.remove(document, "mousemove", moveHandler);
+		Handler.remove(document, "mousemup", upHandler);
+		e.stopPropagation();
+	};
+	
+	Handler.add(data.dragBar, "mouseover", function(e){
+		e.target.style.cursor = "move";
+	});
+	
+	Handler.add(data.dragBar, "mouseout", function(e){
+		e.target.style.cursor = "auto";
+	});
+	
+	Handler.add(data.dragBar, "mousedown", function(e){
+		data.startX = e.clientX;
+		data.startY = e.clientY;
+		data.origX = data.elementToDrag.offsetLeft;
+		data.origY = data.elementToDrag.offsetTop;
+		data.deltaX = data.startX - data.origX;
+		data.deltaY = data.startY - data.origY;
+		
+		Handler.add(document, "mousemove", moveHandler);
+		Handler.add(document, "mouseup", upHandler);
+	});
+
+</script>
+
+
+ </body>
+</html>
