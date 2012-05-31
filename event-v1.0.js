@@ -1,7 +1,7 @@
 
 var Handler = {};
 
-// ±È½ÏÁ½¸ö½ÚµãµÄ¹ØÏµ
+// æ¯”è¾ƒä¸¤ä¸ªèŠ‚ç‚¹çš„å…³ç³»
 var elContains = function(target, related) {
 	try{
 		return target.contains ? target != related && target.contains(related) : !!(target.compareDocumentPosition(related) & 16);
@@ -25,7 +25,7 @@ if(document.addEventListener) {
 				}
 			}
 		};
-		// add mouseenter & mouseleave event
+		// æ·»åŠ  mouseenter & mouseleave äº‹ä»¶
 		if(eventType == "mouseenter" || eventType == "mouseleave") {
 			eventType = (eventType == "mouseenter") ? "mouseover" : "mouseout";
 			element.addEventListener(eventType, addEvt, false);
