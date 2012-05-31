@@ -142,4 +142,7 @@ if(document.addEventListener) {
 	Handler._counter = 0;
 	Handler._uid = function() { return "h" + Handler._counter++; };
 }
+
+
+
 	
