@@ -32,7 +32,7 @@
 	};
 	
 	var moveHandler = function(e){
-		e.target.style.cursor = "move";
+		//e.target.style.cursor = "move";
 		data.elementToDrag.style.left = (e.clientX - data.deltaX) + "px";
 		data.elementToDrag.style.top = (e.clientY - data.deltaY) + "px";
 		// 清除文本选择
@@ -57,7 +57,7 @@
 	});
 	
 	Handler.add(data.dragBar, "mouseout", function(e){
-		e.target.style.cursor = "auto";
+		e.target.style.cursor = "default";
 	});
 	
 	Handler.add(data.dragBar, "mousedown", function(e){
