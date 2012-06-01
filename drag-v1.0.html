@@ -17,7 +17,7 @@
 		<div style="background-color: gray; border-bottom: dotted black; width: 250px; height: 30px; font-family: sans-serif; font-weight: bold;" id="J_dragBarDiv"></div>
 		<div>This is a test. Testing, testing, testing.<p>This is a test.</p>Test.</div>
 	</div>
-<script src="event-v1.0.js" type="text/javascript"></script>
+<script src="src/event-v1.0.js" type="text/javascript"></script>
 <script type="text/javascript">
 	
 	var data = {
@@ -35,7 +35,7 @@
 		//e.target.style.cursor = "move";
 		data.elementToDrag.style.left = (e.clientX - data.deltaX) + "px";
 		data.elementToDrag.style.top = (e.clientY - data.deltaY) + "px";
-		// Çå³ýÎÄ±¾Ñ¡Ôñ
+		// ï¿½ï¿½ï¿½ï¿½Ä±ï¿½Ñ¡ï¿½ï¿½
 		if('getSelection' in window) {
 			window.getSelection().removeAllRanges();
 		} else {
@@ -47,20 +47,20 @@
 	};
 	
 	var upHandler = function(e) {
-		Handler.remove(document, "mousemove", moveHandler);
-		Handler.remove(document, "mousemup", upHandler);
+		EVENT.remove(document, "mousemove", moveHandler);
+		EVENT.remove(document, "mousemup", upHandler);
 		e.stopPropagation();
 	};
 	
-	Handler.add(data.dragBar, "mouseover", function(e){
+	EVENT.add(data.dragBar, "mouseover", function(e){
 		e.target.style.cursor = "move";
 	});
 	
-	Handler.add(data.dragBar, "mouseout", function(e){
+	EVENT.add(data.dragBar, "mouseout", function(e){
 		e.target.style.cursor = "default";
 	});
 	
-	Handler.add(data.dragBar, "mousedown", function(e){
+	EVENT.add(data.dragBar, "mousedown", function(e){
 		data.startX = e.clientX;
 		data.startY = e.clientY;
 		data.origX = data.elementToDrag.offsetLeft;
@@ -68,8 +68,8 @@
 		data.deltaX = data.startX - data.origX;
 		data.deltaY = data.startY - data.origY;
 		
-		Handler.add(document, "mousemove", moveHandler);
-		Handler.add(document, "mouseup", upHandler);
+		EVENT.add(document, "mousemove", moveHandler);
+		EVENT.add(document, "mouseup", upHandler);
 	});
 
 </script>
