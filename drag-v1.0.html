@@ -35,7 +35,7 @@
 		//e.target.style.cursor = "move";
 		data.elementToDrag.style.left = (e.clientX - data.deltaX) + "px";
 		data.elementToDrag.style.top = (e.clientY - data.deltaY) + "px";
-		// ����ı�ѡ��
+		// 禁止选择
 		if('getSelection' in window) {
 			window.getSelection().removeAllRanges();
 		} else {
