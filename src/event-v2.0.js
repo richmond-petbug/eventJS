@@ -1,5 +1,6 @@
 /**
  * @description Event静态对象
+ * @since 在v1.0基础上增加了 mouseenter & mouseleave 事件
  * @return {Object}
  * @version 2.0
  * @author 阿虫
@@ -16,9 +17,7 @@ var EVENT = (function(){
         catch (e) {
         }
     };
-    /**
-     * description W3C浏览器
-     */
+    // W3C浏览器
     if (document.addEventListener) {
     	/**
     	 * @description 添加事件监听
@@ -56,9 +55,7 @@ var EVENT = (function(){
         };
         
     }
-    /**
-     * description IE浏览器
-     */
+    // IE浏览器
     else if (document.attachEvent) {
         Handler.add = function(element, eventType, handler){
             if (Handler._find(element, eventType, handler) != -1) {
