@@ -24,7 +24,7 @@ var EVENT = (function(){
     	 * @param {Object} dom对象
     	 * @param {String} 事件名称
     	 * @param {Function} 事件监听函数
-    	 * @example EVENT.add(dom, "click", func);
+    	 * @example EVENT.add(element, "click", func);
     	 */
         Handler.add = function(element, eventType, handler){
             var addEvt = function(e){
@@ -49,7 +49,13 @@ var EVENT = (function(){
                 element.addEventListener(eventType, handler, false);
             }
         };
-        
+        /**
+    	 * @description 移除事件监听
+    	 * @param {Object} dom对象
+    	 * @param {String} 事件名称
+    	 * @param {Function} 事件监听函数
+    	 * @example EVENT.remove(element, "click", func);
+    	 */
         Handler.remove = function(element, eventType, handler){
             element.removeEventListener(eventType, handler, false);
         };
@@ -111,9 +117,10 @@ var EVENT = (function(){
             var d = element.document || element;
             var w = d.parentWindow;
             var id = Handler._uid();
+            // 保存所有的事件监听
             if (!w._allHandlers) w._allHandlers = {};
             w._allHandlers[id] = h;
-            
+            // 保存dom元素上所有的事件监听
             if (!element._handlers) element._handlers = [];
             
             element._handlers.push(id);
